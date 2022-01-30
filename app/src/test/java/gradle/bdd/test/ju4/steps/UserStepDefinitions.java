@@ -1,5 +1,6 @@
 package gradle.bdd.test.ju4.steps;
 
+import io.cucumber.docstring.DocString;
 import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
 import io.restassured.http.ContentType;
@@ -41,5 +42,18 @@ public class UserStepDefinitions {
     }
 
 
+    @Quando("faço um POST para {word} com a seguinte docString:")
+    public void façoUmPOSTParaVUserComASeguinteDocString(String endpoint, DocString docString) {
+        expectedUser.put("username", "theUser"); // está errado, pois estamos marretando
 
+        given().
+                contentType(ContentType.JSON).
+                body(docString.getContent()). //passando conteúdo completo do json
+                when().
+                post("http://localhost:12345/api" + endpoint).
+                then().
+                contentType(ContentType.JSON).
+                statusCode(HttpStatus.SC_OK);
+
+    }
 }
