@@ -36,12 +36,6 @@ Funcionalidade: Gerenciar de um usuário na Petsore
         """
     Então quando faço um GET para /v3/user/theUser, o usuário criado é retornado
 
-
-  Cenário: Cria um usuario na loja refletindo o negócio
-    Quando crio um usuário
-    Então recebo status code 200
-      E o usuário é salvo no sistema
-
-  Cenário: Cria usuario na loja refletindo o negócio
-    Quando crio um usuário
-    Então usuário é salvo no sistema
+#  Cenário: Cria usuario na loja refletindo o negócio
+#    Quando crio um usuário
+#    Então usuário é salvo no sistema

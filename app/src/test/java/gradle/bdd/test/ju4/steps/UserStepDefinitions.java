@@ -22,10 +22,10 @@ public class UserStepDefinitions {
     public void façoUmPOSTParaVUserComOsSeguintesValores(String endpoint, Map<String, String> user) {
         expectedUser = user;
         given().
-            contentType(ContentType.JSON).
+            //contentType(ContentType.JSON).
             body(user).
         when().
-            post("http://localhost:12345/api" + endpoint).
+            post(endpoint).
         then().
             contentType(ContentType.JSON).
             statusCode(HttpStatus.SC_OK);
@@ -34,7 +34,7 @@ public class UserStepDefinitions {
     @Então("quando faço um GET para {word}, o usuário criado é retornado")
     public void quandoFaçoUmGETParaVUserRicardoVeigaOUsuárioCriadoÉRetornado(String  endpoint) {
         when().
-                get("http://localhost:12345/api" + endpoint).
+                get(endpoint).
                 then().
                 contentType(ContentType.JSON).
                 statusCode(HttpStatus.SC_OK).
@@ -47,12 +47,12 @@ public class UserStepDefinitions {
         expectedUser.put("username", "theUser"); // está errado, pois estamos marretando
 
         given().
-                contentType(ContentType.JSON).
+                //contentType(ContentType.JSON).
                 body(docString.getContent()). //passando conteúdo completo do json
                 when().
-                post("http://localhost:12345/api" + endpoint).
+                post(endpoint).
                 then().
-                contentType(ContentType.JSON).
+                contentType(ContentType.JSON).//perdeu necessidade pois foi config
                 statusCode(HttpStatus.SC_OK);
 
     }
