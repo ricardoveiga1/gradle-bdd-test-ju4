@@ -6,3 +6,6 @@
 
 
 - Alt + Enter : para criar os steps definitions no mac e intellij
+- open app/build/reports/feature.html   no terminal
+- ./gradlew clean -  limpa pasta build com os compilados
+- ./gradlew test - com inclusão do CucumberRunner o gradlew identifica os testes

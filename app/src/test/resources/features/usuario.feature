@@ -35,7 +35,7 @@ Funcionalidade: Gerenciar de um usuário na Petsore
         }
         """
     Então quando faço um GET para /v3/user/theUser, o usuário criado é retornado
-
+  @wip
   Cenário: Cria usuario na loja refletindo o negócio
     Quando crio um usuário
     Então usuário é salvo no sistema
