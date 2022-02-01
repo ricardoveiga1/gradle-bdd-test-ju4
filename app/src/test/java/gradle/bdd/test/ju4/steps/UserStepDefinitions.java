@@ -1,5 +1,6 @@
 package gradle.bdd.test.ju4.steps;
 
+import gradle.bdd.test.ju4.support.domain.User;
 import io.cucumber.docstring.DocString;
 import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
@@ -16,11 +17,18 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class UserStepDefinitions {
 
+    private static final String CREATE_USER_ENDPOINT = "/v3/user";
+    private static final String USER_ENDPOINT = "/v3/user/{username}";
+
     private Map<String, String> expectedUser = new HashMap<>();
+
+    private User user;
 
     @Quando("faço um POST para {word} com os seguintes valores:")
     public void façoUmPOSTParaVUserComOsSeguintesValores(String endpoint, Map<String, String> user) {
+
         expectedUser = user;
+
         given().
             //contentType(ContentType.JSON).
             body(user).
@@ -55,5 +63,34 @@ public class UserStepDefinitions {
                 contentType(ContentType.JSON).//perdeu necessidade pois foi config
                 statusCode(HttpStatus.SC_OK);
 
+    }
+
+    @Quando("crio um usuário")
+    public void crioUmUsuário() {
+
+        user = User.builder().email("teste@email.com").build();//posso passar neste momento
+        //user = User.builder().build();  //vazio nestemomento, sem inicialização
+        //System.out.println("test"); //apenas para debugar e por breakpoint passando email
+
+        given().
+                //contentType(ContentType.JSON).
+                body(user).
+                when().
+                post(CREATE_USER_ENDPOINT).
+                then().
+                //contentType(ContentType.JSON).
+                statusCode(HttpStatus.SC_OK);
+    }
+
+    @Então("usuário é salvo no sistema")
+    public void usuárioÉSalvoNoSistema() {
+        given().
+                pathParam("username", user.getUsername()).  //variável aicionada no início da classe private static na url {}
+                when().
+                get(USER_ENDPOINT).
+                then().
+                contentType(ContentType.JSON).
+                statusCode(HttpStatus.SC_OK).
+                body("username", is(user.getUsername()));
     }
 }
