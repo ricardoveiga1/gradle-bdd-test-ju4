@@ -30,8 +30,8 @@ public class UserStepDefinitions {
 
     @Quando("crio um user")
     public void crioUmUser() {
-        //expectedUser = User.builder().build();
-        expectedUser = User.builder().username("Ana Maria").build();
+        expectedUser = User.builder().build();
+        //expectedUser = User.builder().username("Ana Maria").build();
         userApi.createUser(expectedUser);
 
 //        given().
