@@ -25,30 +25,51 @@
                     statusCode(HttpStatus.SC_OK);
         }
 
-        public String getUsername(User user) {
-            return given().
-                    pathParam("username", user.getUsername()). //variável aicionada no início da classe private static na url {}
-                    when().
-                    get(USER_ENDPOINT).
-                    thenReturn().
-                    path("username");
+//        public String getUsername(User user) {
+//            return given().
+//                    pathParam("username", user.getUsername()). //variável aicionada no início da classe private static na url {}
+//                    when().
+//                    get(USER_ENDPOINT).
+//                    thenReturn().
+//                    path("username");
+//        }
+
+        public String getUsername() {
+            User user = User.builder().build();
+            return
+                    given().
+                            pathParam("username", user.getUsername()). //variável aicionada no início da classe private static na url {}
+                            when().
+                            get(USER_ENDPOINT).
+                            then().
+                            extract().
+                            path("username");
         }
 
         //fazendo uma lista de usuários para deletar
-        public void deleteAllUsers(){
-            //List<String> usersList = Arrays.asList("ricardoVeiga", "outroConteudo);
-            List<String> usersList = Arrays.asList("ricardoVeiga", "Ana Maria"); //deletando use de teste
+//        public void deleteAllUsers(){
+//            //List<String> usersList = Arrays.asList("ricardoVeiga", "outroConteudo);
+//            List<String> usersList = Arrays.asList("ricardoVeiga", "Ana Maria"); //deletando use de teste
+//
+//            for( String user: usersList) {  //cada varredura vou ter um usuario da lista que vai estar dentro do user
+//                given().
+//                pathParam("username", user). //variável aicionada no início da classe private static na url {}
+//                        when().
+//                        delete(USER_ENDPOINT).
+//                        then().
+//                        statusCode(HttpStatus.SC_OK);
+//            }
+//        }
 
-            for( String user: usersList) {  //cada varredura vou ter um usuario da lista que vai estar dentro do user
+        public void deleteAllUsers(){
+            String user =  getUsername();
                 given().
-                pathParam("username", user). //variável aicionada no início da classe private static na url {}
+                        pathParam("username", user).
                         when().
                         delete(USER_ENDPOINT).
                         then().
                         statusCode(HttpStatus.SC_OK);
-            }
         }
-
 
 
 

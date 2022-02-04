@@ -44,7 +44,8 @@ public class UserStepDefinitions {
 
     @Então("user é salvo no sistema")
     public void userÉSalvoNoSistema() {  // retorna uma string
-       String actualUserName = userApi.getUsername(expectedUser);
+       String actualUserName = userApi.getUsername();
+        System.out.println(actualUserName);
 
        assertThat(actualUserName, is(expectedUser.getUsername()));
     }
