@@ -5,7 +5,6 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 
 
@@ -14,6 +13,7 @@ public class Config {
     private final UserApi userApi;
 
     public Config() {
+
         userApi = new UserApi();
     }
 
