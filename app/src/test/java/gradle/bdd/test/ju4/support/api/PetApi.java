@@ -34,5 +34,13 @@ public class PetApi {
         //return  response.body().jsonPath().getList("", Pet.class);
     }
 
+    //Get em todos pets available
+    public Response getPetsResponseByStatus(String status){
+        return given().
+           pathParam("status", status). //status da url
+        when().
+           get(FIND_PETS_BY_STATUS_ENDPOINT);
+    }
+
 
 }

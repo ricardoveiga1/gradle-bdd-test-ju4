@@ -5,8 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import gradle.bdd.test.ju4.support.api.PetApi;
 import gradle.bdd.test.ju4.support.domain.Pet;
 import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
+import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
 
 import java.util.List;
 
@@ -42,5 +45,27 @@ public class PetStepDefinitions {
     @Então("eu recebo a lista de animais available")
     public void euReceboAListaDeAnimaisAvailable() {
         assertThat(actualPets, is(not(empty())));
+    }
+
+    @E("eu recebo uma outra lista de animais {word}")
+    public void euReceoUmaOutraListaDeAnimaisAvailable(String status) {
+        //jogando o GET em uma variável
+        Response actualAvailablePetsResponse = petApi.getPetsResponseByStatus(status);
+
+        //pegando lista dinamica, caso mude a quantidade de itens, estarei atualizando a lista de itens, fica mais inteligente
+        //desserialização
+        actualPets = actualAvailablePetsResponse.body().jsonPath().getList("", Pet.class);
+
+        actualAvailablePetsResponse.
+                then().
+                statusCode(HttpStatus.SC_OK).
+                //groove collection
+                body(
+                       // "size", is(7),
+                     "size", is(actualPets.size()),
+                     //como se for um for it, percorre todos otens, mas poderia por apenas available
+                     "findAll { it.status == '"+status+"'}.size()", is (actualPets.size())
+                );
+
     }
 }
