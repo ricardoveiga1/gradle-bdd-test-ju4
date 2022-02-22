@@ -24,7 +24,8 @@ public class UserStepDefinitions {
     private User expectedUser;
     private UserApi userApi;
 
-    public UserStepDefinitions(){ //construtor criado para inicializar o que preciso
+    public UserStepDefinitions(){ //construtor criado para inicializar o que preciso da API
+
         userApi = new UserApi();
     }
 
