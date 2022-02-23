@@ -16,3 +16,5 @@
  - Podemos criar uma estratégia de seed(semente), para inputar dados automaticamente e executar nossos testes mais controlados
  - https://github.com/cucumber/cucumber-expressions#readme para aprender a transformar as palavras do cenário em variável
  - Devemos instalar o groovy para ajudar com groovy colletctions, possui um alto poder de facilitar as ASSERTIVAS
+ - Para facilitar as ASSERTIVAS devo utilizar Groovy Collection, porque se não teria que varrer, checar se eles possuem, tratar o objeto 
+ - https://docs.groovy-lang.org/next/html/documentation/working-with-collections.html
