@@ -15,3 +15,4 @@
  - Implementamos o conceito de designer client api para criar as chamadas das Apis e posteriormente executar os testes de forma mais limpa.
  - Podemos criar uma estratégia de seed(semente), para inputar dados automaticamente e executar nossos testes mais controlados
  - https://github.com/cucumber/cucumber-expressions#readme para aprender a transformar as palavras do cenário em variável
+ - Devemos instalar o groovy para ajudar com groovy colletctions, possui um alto poder de facilitar as ASSERTIVAS
