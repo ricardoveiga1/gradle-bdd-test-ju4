@@ -42,5 +42,24 @@ public class PetApi {
            get(FIND_PETS_BY_STATUS_ENDPOINT);
     }
 
+    public void deletePetsByStatus(String status){
+        List<Integer> petsId = given().
+                pathParam("status", status).
+        when().
+                get(FIND_PETS_BY_STATUS_ENDPOINT).
+        thenReturn().
+                path("id");
+
+        //se a lista não for vazia, faça
+        //enquanto o id estiver dentro da lista varra
+        if(!petsId.isEmpty()) {
+            for (Integer id : petsId) {  //percorrendo a lista
+                given().pathParam("id", id).
+                        delete(PET_ENDPOINT);
+            }
+        }
+
+    }
+
 
 }

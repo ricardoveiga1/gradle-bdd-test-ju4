@@ -23,22 +23,23 @@ public class PetStepDefinitions {
 
     //para utilizar o metodos do petApi preciso inicializar dentro do construtor
     public PetStepDefinitions(){
+
         petApi = new PetApi();
     }
 
-    @Dado("que eu possua animais available")
-    public void queEuPossuaAnimaisDispiníveis() throws JsonProcessingException {
-        Pet pet = Pet.builder().build();
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(pet);
-        System.out.println(json);
-        //System.out.println("test debug");
+    @Dado("que eu possua animais {word}")
+    public void queEuPossuaAnimaisDispiníveis(String status) throws JsonProcessingException {
+//        Pet pet = Pet.builder().build();
+//        ObjectMapper mapper = new ObjectMapper();
+//        String json = mapper.writeValueAsString(pet);
+//        System.out.println(json);
+//        System.out.println("test debug");
     }
 
     @Quando("eu pesquiso por todos os animais {word}")// transformamos a palavra available em uma variável {word}
     public void euPesquisoPorTodosOsAnimaisAvailable(String status) {
         actualPets = petApi.getPetsByStatus(status); //recebo uma lista de Pets
-        System.out.println("Teste debug");
+        //System.out.println("Teste debug");
 
     }
 
@@ -67,5 +68,15 @@ public class PetStepDefinitions {
                      "findAll { it.status == '"+status+"'}.size()", is (actualPets.size())
                 );
 
+    }
+
+    @Então("eu recebo a lista com {int} animal/animais")
+    public void euReceboAListaDeAnimaisPending(int petsQuantity) {
+        assertThat(actualPets.size(), is(petsQuantity));
+    }
+
+    @Dado("que eu não possua animais {word}")
+    public void queEuNãoPossuaAnimaisSold(String status) {
+        petApi.deletePetsByStatus(status);
     }
 }
