@@ -70,7 +70,7 @@ public class PetStepDefinitions {
 
     }
 
-    @Então("eu recebo a lista com {int} animal/animais")
+    @Então("eu recebo a lista com {} animal/animais")
     public void euReceboAListaDeAnimaisPending(int petsQuantity) {
         assertThat(actualPets.size(), is(petsQuantity));
     }
