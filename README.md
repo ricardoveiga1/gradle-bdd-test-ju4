@@ -1,8 +1,9 @@
-## Projeto para rest apis com BDD(cucumber)
+2# Automação de Testes de API usando BDD
 
 
 ## Referências
 - https://github.com/cucumber/cucumber-expressions#readme
+- https://docs.groovy-lang.org/next/html/documentation/working-with-collections.html
 
 
 - Alt + Enter : para criar os steps definitions no mac e intellij
@@ -18,3 +19,18 @@
  - Devemos instalar o groovy para ajudar com groovy colletctions, possui um alto poder de facilitar as ASSERTIVAS
  - Para facilitar as ASSERTIVAS devo utilizar Groovy Collection, porque se não teria que varrer, checar se eles possuem, tratar o objeto 
  - https://docs.groovy-lang.org/next/html/documentation/working-with-collections.html
+ - BUILDER : é uma classe que monta outra classe para facilitar e reduzir verbosidade
+
+
+
+
+### Requisitos:
+* Java 11
+* Gradle 6.7+
+* Docker
+
+
+### Executar os Testes Localmente
+* Subir a loja Swagger Pet Store - `docker run  --name petstore -d -p 12345:8080 swaggerapi/petstore3:unstable`
+* Rodar os testes - `./gradlew test`
+* Relatório do Cucumber - `app/build/reports/feature.html`
