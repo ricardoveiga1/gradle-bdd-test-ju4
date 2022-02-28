@@ -17,12 +17,12 @@
         private static final String USER_ENDPOINT = "/v3/user/{username}";
 
         public void createUser(User user){
-            given().
+            given().log().all().
                     body(user).
                     when().
                     post(CREATE_USER_ENDPOINT).
                     then().
-                    statusCode(HttpStatus.SC_ACCEPTED);
+                    statusCode(HttpStatus.SC_OK);
         }
 
         public String getUsername(User user) {
@@ -48,6 +48,15 @@
                         statusCode(HttpStatus.SC_OK);
             }
         }
+
+        public void deleteUser(User user){
+                given().log().all().
+                        pathParam("username", user.getUsername()).  //username da url
+                when().
+                        delete(USER_ENDPOINT).
+                then().
+                        statusCode(HttpStatus.SC_OK);
+            }
 
 
     }
