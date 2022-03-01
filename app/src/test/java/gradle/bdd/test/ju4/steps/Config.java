@@ -1,5 +1,6 @@
 package gradle.bdd.test.ju4.steps;
 
+import gradle.bdd.test.ju4.support.api.PetApi;
 import gradle.bdd.test.ju4.support.api.UserApi;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -11,15 +12,17 @@ import io.restassured.http.ContentType;
 public class Config {
 
     private final UserApi userApi;
+    private PetApi petApi;
 
     public Config() {
 
         userApi = new UserApi();
+        petApi = new PetApi();
     }
 
     @Before  //before do cucumber, se for do junit daria problema, pois teria que extender classes
     public void Setup(){
-        System.out.println("Setup");
+        //System.out.println("Setup");
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();  // deixando verboso os erros
         RestAssured.baseURI = "http://localhost:12345";
         RestAssured.basePath = "/api";
@@ -72,4 +75,9 @@ public class Config {
 //    public  void doLast3(){
 //        System.out.println("before terceiro");
 //    }
+
+    @After("@DeleteExtraPets")
+    public void deleteExtraPets() {
+        petApi.deleteExtraPets("available");
+    }
 }

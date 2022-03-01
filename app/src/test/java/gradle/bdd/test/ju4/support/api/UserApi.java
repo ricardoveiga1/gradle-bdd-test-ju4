@@ -22,7 +22,7 @@
                     when().
                     post(CREATE_USER_ENDPOINT).
                     then().
-                    statusCode(HttpStatus.SC_ACCEPTED);
+                    statusCode(HttpStatus.SC_OK);
         }
 
         public String getUsername(User user) {

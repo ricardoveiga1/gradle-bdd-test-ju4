@@ -1,8 +1,8 @@
 package gradle.bdd.test.ju4.support.domain.builders;
 
-import gradle.bdd.test.ju4.support.domain.Store;
-
-public class StoreBuilder {
+import gradle.bdd.test.ju4.support.domain.Order;
+//jeito antigo de criar builder, sem lombok
+public class OrderBuilder {
 
     private int id;
     private int petId;
@@ -11,43 +11,43 @@ public class StoreBuilder {
     private String status;
     private boolean complete;
 
-    public StoreBuilder() {
+    public OrderBuilder() {
 
         reset();
     }
 
-    public StoreBuilder withId(int id) {
+    public OrderBuilder withId(int id) {
         this.id = id;
         return this;
     }
 
-    public StoreBuilder withPetId(int petId) {
+    public OrderBuilder withPetId(int petId) {
         this.petId = petId;
         return this;
     }
 
-    public StoreBuilder withQuantity(int quantity) {
+    public OrderBuilder withQuantity(int quantity) {
         this.quantity = quantity;
         return this;
     }
 
-    public StoreBuilder withShipDate(String shipDate) {
+    public OrderBuilder withShipDate(String shipDate) {
         this.shipDate = shipDate;
         return this;
     }
 
-    public StoreBuilder withStatus(String status) {
+    public OrderBuilder withStatus(String status) {
         this.status = status;
         return this;
     }
 
-    public StoreBuilder withComplete(Boolean complete) {
+    public OrderBuilder withComplete(Boolean complete) {
         this.complete = complete;
         return this;
     }
 
-    public Store build() {
-        return new Store(
+    public Order build() {
+        return new Order(
                 id,
                 petId,
                 quantity,
@@ -61,7 +61,7 @@ public class StoreBuilder {
         id = 5;
         petId = 22;
         quantity = 10;
-        shipDate = "20/02/2021";
+        shipDate = "2022-03-01T01:31:31.229Z";
         status = "approved";
         complete = true;
     }

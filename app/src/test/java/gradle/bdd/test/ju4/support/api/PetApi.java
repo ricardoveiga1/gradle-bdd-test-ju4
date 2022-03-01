@@ -7,6 +7,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.HttpStatus;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -70,7 +71,24 @@ public class PetApi {
                 post(CREATE_PET_ENDPOINT).
                 then().
                 statusCode(HttpStatus.SC_OK).
-                extract().body().as(Pet.class);
+                extract().body().as(Pet.class);//extraindo(retornando) como uma classe, não é um teste
+    }
+
+    public void deleteExtraPets(String status) {
+        List<Integer> petIds = given().
+                pathParam("status", status).
+                when().
+                get(FIND_PETS_BY_STATUS_ENDPOINT).
+                thenReturn().
+                path("id");
+
+        List<Integer> petsToKeep = Arrays.asList(1,2,4,7,8,9,10);
+
+        for(int petId : petIds) {
+            if (!petsToKeep.contains(petId)) {
+                given().pathParam("id", petId).delete(PET_ENDPOINT).then().statusCode(HttpStatus.SC_OK);
+            }
+        }
     }
 
 
