@@ -4,6 +4,7 @@
 ## Referências
 - https://github.com/cucumber/cucumber-expressions#readme
 - https://docs.groovy-lang.org/next/html/documentation/working-with-collections.html
+- https://junit.org/junit5/docs/current/user-guide/
 
 
 - Alt + Enter : para criar os steps definitions no mac e intellij
