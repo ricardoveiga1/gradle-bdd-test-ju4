@@ -49,5 +49,14 @@
             }
         }
 
+        public void deleteUser(User user){
+            given().log().all().
+                    pathParam("username", user.getUsername()).  //username da url
+                    when().
+                    delete(USER_ENDPOINT).
+                    then().
+                    statusCode(HttpStatus.SC_OK);
+        }
+
 
     }
